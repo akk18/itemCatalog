@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{{ super() }}
+{% block content %}
+
+<h2>Delete this entry?</h2>
+<h3>{{movie.name}}</h3>
+<br>
+Category: {{genre.name}}
+<br>
+<br>
+Description: {{movie.description}}
+
+<br>
+<br>
+<form action="{{url_for('delete_movie', genre_id=genre.id, movie_id=movie.id)}}" method="POST">
+    <input type="hidden" name="delete" value="yes">
+    <input type="submit" value="Delete">
+</form>
+<br>
+<a href="{{url_for('show_movie', genre_id=genre.id, movie_id=movie.id)}}">Cancel</a>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>New Item</h2>
+
+    <form action="{{url_for('new_movie')}}" method="POST">
+        <p>Name:</p>
+        <input type="text" size="30" name="name" value="{{input_name}}">
+        <br>
+        <p>Description:</p>
+        <input type="text" size="50" name="description" value="{{input_description}}">
+        <br>
+        <p>Genre:</p>
+        <select name="genre">
+            {% if not default_genre %}
+                <option selected="selected" {# disabled="disabled"  #}value="None">Select a genre</option>
+            {% endif %}
+            {% for genre in genres %}
+                {% if genre.name == default_genre %}
+                    <option selected="selected" value="{{genre.name}}">{{genre.name}}</option>
+                {% else %}
+                    <option value="{{genre.name}}">{{genre.name}}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        <input type="submit" value="Create">
+    </form>
+
+{% endblock %}
